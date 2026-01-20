@@ -25,7 +25,8 @@ unset($_SESSION["signupErr"]);
 
 <body>
     <div class="container">
-        <h2>User Registration</h2>
+        <h2>BDHR User Registration</h2>
+        
         <form method="post" action="../Controller/SignUpValidation.php">
             <table>
                 <tr>
@@ -43,7 +44,7 @@ unset($_SESSION["signupErr"]);
                 </tr>
                 <tr>
                     <td>
-                        <div class="radio-group">
+                        <div class="radiobtn">
                             <label><input type="radio" name="gender" value="male" <?php echo ($previousValues['gender'] ?? '') == 'male' ? 'checked' : ''; ?> required> Male</label>
                             <label><input type="radio" name="gender" value="female" <?php echo ($previousValues['gender'] ?? '') == 'female' ? 'checked' : ''; ?>> Female</label>
                         </div>
@@ -78,7 +79,7 @@ unset($_SESSION["signupErr"]);
                 </tr>
                 <tr>
                     <td>
-                        <div class="radio-group">
+                        <div class="radiobtn">
                             <label><input type="radio" name="role" value="patient" <?php echo ($previousValues['role'] ?? '') == 'patient' ? 'checked' : ''; ?> required> Patient</label>
                             <label><input type="radio" name="role" value="doctor" <?php echo ($previousValues['role'] ?? '') == 'doctor' ? 'checked' : ''; ?>> Doctor</label>
                         </div>

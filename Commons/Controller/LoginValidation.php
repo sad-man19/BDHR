@@ -52,7 +52,7 @@ if($result && $result->num_rows > 0){
     $_SESSION["phone"] = $user["phone"];
     $_SESSION["role"] = $user["role"];
     
-    // Redirect based on role
+    //role wise dashboard
     if($user["role"] == "patient"){
         Header("Location: ../../Patient/View/dashboard.php");
     } elseif($user["role"] == "doctor"){

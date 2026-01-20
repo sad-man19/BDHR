@@ -43,7 +43,7 @@ unset($_SESSION["successMsg"]);
         <form method="post" action="../Controller/LoginValidation.php">
             <table>
                 <tr>
-                    <td>Email or Phone <span class="required">*</span></td>
+                    <td>Email<span class="required">*</span></td>
                 </tr>
                 <tr>
                     <td><input type="text" name="email_phone" value="<?php echo $previousValues['email_phone'] ?? '' ?>" required/></td>

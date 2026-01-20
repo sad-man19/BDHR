@@ -12,7 +12,7 @@ body {
     background: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /*box-shadow: 0 2px 10px rgba(0,0,0,0.1);*/
     width: 400px;
 }
 
@@ -35,7 +35,7 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-.radio-group {
+.radiobtn {
     display: flex;
     gap: 15px;
     margin: 5px 0;
@@ -69,4 +69,15 @@ input[type="password"] {
 .login-link {
     text-align: center;
     margin-top: 15px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
 }

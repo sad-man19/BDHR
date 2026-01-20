@@ -7,6 +7,7 @@ if(!file_exists($path)){
 }
 include $path;
 
+//getting values from view through $_POST
 $name = $_POST["name"] ?? "";
 $gender = $_POST["gender"] ?? "";
 $email = $_POST["email"] ?? "";
@@ -18,7 +19,7 @@ $confirmPassword = $_POST["confirmPassword"] ?? "";
 $errors = [];
 $previousValues = [];
 
-// Validation
+//validation for each field
 if(empty($name)){
     $errors["name"] = "Name is required";
 } else {
@@ -40,7 +41,7 @@ if(empty($email)){
 }
 
 if(empty($phone)){
-    $errors["phone"] = "Phone is required";
+    $errors["phone"] = "Phone number is required";
 } elseif(!preg_match("/^01[0-9]{9}$/", $phone)){
     $errors["phone"] = "Invalid phone number(must be 11 digit)";
 } else {
@@ -60,7 +61,7 @@ if(empty($password)){
 }
 
 if(empty($confirmPassword)){
-    $errors["confirmPassword"] = "Confirm Password is required";
+    $errors["confirmPassword"] = "Pleaae confirm your password!";
 } elseif($password !== $confirmPassword){
     $errors["confirmPassword"] = "Passwords do not match";
 }

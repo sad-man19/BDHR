@@ -1,19 +1,23 @@
 <?php
 session_start();
 
-// Check if user came from step 1
 if(!isset($_SESSION["signup_user_id"]) || $_SESSION["signup_role"] != "patient"){
     Header("Location: ../../Commons/View/signup.php");
     exit();
 }
 
+
 $previousValues = $_SESSION["previousValues"] ?? [];
 $errors = $_SESSION["errors"] ?? [];
 $signupErr = $_SESSION["signupErr"] ?? "";
 
+
+//unset($_SESSION["signupErr]);
 unset($_SESSION['errors']);
 unset($_SESSION['previousValues']);
 unset($_SESSION["signupErr"]);
+
+
 ?>
 
 <html>
@@ -26,25 +30,26 @@ unset($_SESSION["signupErr"]);
 <body>
     <div class="container">
         <h2>Patient Registration</h2>
-        <p>Welcome, <?php echo $_SESSION["signup_email"] ?? ''; ?></p>
+        <p>Welcome, <?php echo $_SESSION["signup_email"] ?? '';?></p>
         <form method="post" action="../Controller/SignUp_patientValidation.php">
             <table>
                 <tr>
                     <td>Medical ID <span class="required">*</span></td>
                 </tr>
                 <tr>
-                    <td><input type="text" id="medical_id" name="medical_id" value="<?php echo $previousValues['medical_id'] ?? '' ?>" onkeyup="checkMedicalId()" required/></td>
+
+                    <td><input type="text" id="medical_id" name="medical_id" value="<?php echo $previousValues['medical_id'] ?? ''?>" onkeyup="checkMedicalId()" required/></td>
                 </tr>
                 <tr>
                     <td><div class="error" id="medicalIdError"></div></td>
-                    <td><div class="error"><?php echo $errors["medical_id"] ?? ''; ?></div></td>
+                    <td><div class="error"><?php echo $errors["medical_id"] ?? '';?></div></td>
                 </tr>
 
                 <tr>
                     <td>Date of Birth <span class="required">*</span></td>
                 </tr>
                 <tr>
-                    <td><input type="date" name="dob" value="<?php echo $previousValues['dob'] ?? '' ?>" required/></td>
+                    <td><input type="date" name="dob" value="<?php echo $previousValues['dob'] ?? '' ?>"/></td>
                 </tr>
                 <tr>
                     <td><div class="error"><?php echo $errors["dob"] ?? ''; ?></div></td>
@@ -54,7 +59,7 @@ unset($_SESSION["signupErr"]);
                     <td>Address <span class="required">*</span></td>
                 </tr>
                 <tr>
-                    <td><textarea name="address" rows="3" required><?php echo $previousValues['address'] ?? '' ?></textarea></td>
+                    <td><textarea name="address" rows="3" required><?php echo $previousValues['address'] ?? ''?></textarea></td>
                 </tr>
                 <tr>
                     <td><div class="error"><?php echo $errors["address"] ?? ''; ?></div></td>
@@ -68,9 +73,11 @@ unset($_SESSION["signupErr"]);
                     <td>
                         <input type="submit" name="submit" value="Complete Registration" class="submit-btn"/>
                     </td>
+                    
                 </tr>
             </table>
         </form>
+        
     </div>
 </body>
 </html>

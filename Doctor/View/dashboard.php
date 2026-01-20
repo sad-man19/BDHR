@@ -15,6 +15,7 @@ if(!isset($_SESSION["isLoggedIn"]) || $_SESSION["isLoggedIn"] !== true || $_SESS
 
 <body>
     <h1>Hello, Dr. <?php echo $_SESSION["name"]; ?></h1>
+    <a href="../Controller/profile_viewer.php">View My Profile</a>
     
     <form method="post" action="../../Commons/Controller/logout.php">
         <input type="submit" name="logout" value="Logout"/>

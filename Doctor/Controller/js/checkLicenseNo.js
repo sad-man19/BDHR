@@ -12,7 +12,7 @@ function checkLicenseNo() {
                     errorElement.innerHTML = "License Number already exists!";
                     errorElement.style.color = "red";
                 } else {
-                    errorElement.innerHTML = "✓ Available";
+                    errorElement.innerHTML = "Available";
                     errorElement.style.color = "green";
                 }
             }

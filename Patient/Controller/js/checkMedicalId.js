@@ -12,7 +12,7 @@ function checkMedicalId() {
                     errorElement.innerHTML = "Medical ID already exists!";
                     errorElement.style.color = "red";
                 } else {
-                    errorElement.innerHTML = "✓ Available";
+                    errorElement.innerHTML = "Available";
                     errorElement.style.color = "green";
                 }
             }

@@ -62,7 +62,7 @@ class DatabaseConnection{
 
     //login
     function loginUser($connection, $email_phone, $password){
-    $sql = "SELECT * FROM users WHERE (email='".$email_phone."' OR phone='".$email_phone."') AND password='".$password."'";
+    $sql = "SELECT * FROM users WHERE email='".$email_phone."' AND password='".$password."'";
     $result = $connection->query($sql);
     return $result;
 }
