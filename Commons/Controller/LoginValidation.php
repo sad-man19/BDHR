@@ -59,7 +59,7 @@ if($result && $result->num_rows > 0){
         Header("Location: ../../Doctor/View/dashboard.php");
     }
 } else {
-    $_SESSION["loginErr"] = "Invalid email/phone or password!";
+    $_SESSION["loginErr"] = "Invalid email or password!";
     $_SESSION["previousValues"] = $previousValues;
     Header("Location: ../View/login.php");
 }

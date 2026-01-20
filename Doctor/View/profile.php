@@ -7,7 +7,8 @@ if(!isset($_SESSION["isLoggedIn"])||$_SESSION["isLoggedIn"] !== true || $_SESSIO
 } 
 
 if(!isset($_SESSION["profile_data"])){
-    die("Profile data missing. Please access via profile viewer.");
+    Header("Location: ../Controller/profile_viewer.php");
+    exit();
 }
 
 

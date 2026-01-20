@@ -25,6 +25,39 @@ class DatabaseConnection{
         return $result->fetch_assoc();
     }
 
+    function updateUserPhone($connection, $user_id, $phone){
+        $sql = "UPDATE users SET phone='".$phone."' WHERE id='".$user_id."'";
+        $result = $connection->query($sql);
+        if(!$result){
+            die("Failed to update phone ". $connection->error);
+        }
+        return $result;
+    }
+
+    function updatePatientAddress($connection, $user_id, $address){
+        $sql = "UPDATE patients SET address='".$address."' WHERE user_id='".$user_id."'";
+        $result = $connection->query($sql);
+        if(!$result){
+            die("Failed to update address ". $connection->error);
+        }
+        return $result;
+    }
+
+    function updatePassword($connection, $user_id, $new_password){
+        $sql = "UPDATE users SET password='".$new_password."' WHERE id='".$user_id."'";
+        $result = $connection->query($sql);
+        if(!$result){
+            die("Failed to update password ". $connection->error);
+        }
+        return $result;
+    }
+
+     function verifyPassword($connection, $user_id, $password){
+        $sql = "SELECT * FROM users WHERE id='".$user_id."' AND password='".$password."'";
+        $result = $connection->query($sql);
+        return $result->num_rows > 0;
+    }
+
     function closeConnection($connection){
     $connection->close();
 }
