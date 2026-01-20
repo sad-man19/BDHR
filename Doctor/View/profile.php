@@ -16,7 +16,7 @@ if(!isset($_SESSION["profile_data"])){
 
 //getting data
 $doctor=$_SESSION["profile_data"];
-
+$successMsg= $_SESSION["successMsg"];
 ?>
 
 <html>
@@ -27,6 +27,12 @@ $doctor=$_SESSION["profile_data"];
     <body>
         <div class="profile">
             <h2>Profile Information</h2>
+            <div class="profile">
+            <?php if($successMsg): ?>
+                <div class="success-msg">
+                <?php echo $successMsg; ?>
+                </div>
+            <?php endif; ?>
             <table class="table">
                 <tr>
                 <td class="label">Name:</td>
@@ -61,7 +67,7 @@ $doctor=$_SESSION["profile_data"];
             </table>
             <div class="btns">
                 <a href="dashboard.php">Go to dashboard</a><br>
-                <a href="">Edit Profile</a>
+                <a href="edit_profile.php">Edit Profile</a>
             </div>
         </div>
     </body>

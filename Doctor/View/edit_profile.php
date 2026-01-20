@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["isLoggedIn"])||$_SESSION["isLoggedIn"] !== true || $_SESSION["role"]!="patient"){
+if(!isset($_SESSION["isLoggedIn"])||$_SESSION["isLoggedIn"] !== true || $_SESSION["role"]!="doctor"){
     header("Location: ../../Commons/View/login.php");
     exit();
 
@@ -12,12 +12,12 @@ if(!isset($_SESSION["profile_data"])){
 
 }
 //getting data
-$patient=$_SESSION["profile_data"];
+$doctor=$_SESSION["profile_data"];
 $errors =$_SESSION["errors"] ?? [];
 $previousValues =$_SESSION["previousValues"] ?? [];
 
-$phone =$previousValues["phone"] ?? $patient["phone"] ?? "";
-$address =$previousValues["address"] ?? $patient["address"] ??"";
+$phone =$previousValues["phone"] ?? $doctor["phone"] ?? "";
+$chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
 
 ?>
 
@@ -33,24 +33,26 @@ $address =$previousValues["address"] ?? $patient["address"] ??"";
             <form method="post" action="../Controller/UpdateProfileValidation.php" id="editProfileForm" onsubmit="return validateForm()">
                 <table>
                     <tr>
-                        <td class="label">Medical ID:</td>
-                        <td class="value"><strong><?php echo htmlspecialchars($patient["medical_id"] ?? ''); ?></strong></td>
+                        <td class="label">Name:</td>
+                        <td class="value"><strong><?php echo htmlspecialchars($doctor["name"] ?? ''); ?></strong></td>
                     </tr>
                     <tr>
-                        <td class="label">Name:</td>
-                        <td class="value"><strong><?php echo htmlspecialchars($patient["name"] ?? ''); ?></strong></td>
+                        <td class="label">License:</td>
+                        <td class="value"><strong><?php echo htmlspecialchars($doctor["license_no"] ?? ''); ?></strong></td>
                     </tr>
+                    <tr>
+                        <td class="label">Specialization:</td>
+                        <td class="value"><strong><?php echo htmlspecialchars($doctor["specialization"] ?? ''); ?></strong></td>
+                    </tr>
+                    
                     <tr>
                         <td class="label">Gender:</td>
-                        <td class="value"><strong><?php echo htmlspecialchars($patient["gender"] ?? ''); ?></strong></td>
+                        <td class="value"><strong><?php echo htmlspecialchars($doctor["gender"] ?? ''); ?></strong></td>
                     </tr>
-                    <tr>
-                        <td class="label">Date of Birth:</td>
-                        <td class="value"><strong><?php echo htmlspecialchars($patient["dob"] ?? ''); ?></strong></td>
-                    </tr>
+                    
                     <tr>
                         <td class="label">Email:</td>
-                        <td class="value"><strong><?php echo htmlspecialchars($patient["email"] ?? ''); ?></strong></td>
+                        <td class="value"><strong><?php echo htmlspecialchars($doctor["email"] ?? ''); ?></strong></td>
                     </tr>
 
 
@@ -66,12 +68,12 @@ $address =$previousValues["address"] ?? $patient["address"] ??"";
                     </tr>
 
                     <tr>
-                        <td>Address: <span class="required">*</span></td>
-                        <td><textarea id="address" name="address" rows="3" ><?php echo htmlspecialchars($address); ?></textarea></td>
+                        <td>Chamber: <span class="required">*</span></td>
+                        <td><textarea id="chamber" name="chamber" rows="3" ><?php echo htmlspecialchars($chamber); ?></textarea></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><div class="error" id="addressErr"><?php echo $errors["address"] ?? ""; ?></div></td>
+                        <td><div class="error" id="chamberErr"><?php echo $errors["chamber"] ?? ""; ?></div></td>
                     </tr>
 
                     <tr>
