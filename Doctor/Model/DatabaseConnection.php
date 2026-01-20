@@ -60,6 +60,26 @@ class DatabaseConnection{
         return $result->num_rows > 0;
     }
 
+    //Fetching current date appointments
+    function getTodaysAppointments($connection, $doctor_id) {
+
+    $sql = "SELECT a.*, p.medical_id, u.name AS patient_name
+            FROM appointments a
+            JOIN patients p ON a.patient_id = p.id
+            JOIN users u ON p.user_id = u.id
+            WHERE a.doctor_id = '$doctor_id'
+            AND a.appointment_date = CURDATE()
+            ORDER BY a.appointment_time";
+
+    $result = $connection->query($sql);
+
+    if (!$result) {
+        die("Failed to fetch appointments: " . $connection->error);
+    }
+
+    return $result;
+}
+
     function closeConnection($connection){
     $connection->close();
 }

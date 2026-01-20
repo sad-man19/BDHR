@@ -66,6 +66,16 @@ class DatabaseConnection{
     $result = $connection->query($sql);
     return $result;
 }
+    function getDoctorId($connection, $user_id){
+    $sql = "SELECT id FROM doctors WHERE user_id = '$user_id' LIMIT 1";
+    $result = $connection->query($sql);
+    if($result && $result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        return $row['id']; // return doctor_id
+    }
+    return 0; // fallback
+}
+
 
     function closeConnection($connection){
         $connection->close();

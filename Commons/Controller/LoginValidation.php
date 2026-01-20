@@ -55,8 +55,12 @@ if($result && $result->num_rows > 0){
     //role wise dashboard
     if($user["role"] == "patient"){
         Header("Location: ../../Patient/View/dashboard.php");
+        exit();
     } elseif($user["role"] == "doctor"){
+        $_SESSION["doctor_id"] = $db->getDoctorId($connection, $user["id"]);
+        session_write_close();
         Header("Location: ../../Doctor/View/dashboard.php");
+        exit();
     }
 } else {
     $_SESSION["loginErr"] = "Invalid email or password!";

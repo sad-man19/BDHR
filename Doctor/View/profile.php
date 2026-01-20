@@ -16,7 +16,11 @@ if(!isset($_SESSION["profile_data"])){
 
 //getting data
 $doctor=$_SESSION["profile_data"];
-$successMsg= $_SESSION["successMsg"];
+$successMsg= $_SESSION["successMsg"] ?? null;
+
+if(isset($_SESSION["successMsg"])){
+    unset($_SESSION["successMsg"]);
+}
 ?>
 
 <html>
