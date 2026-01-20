@@ -64,6 +64,38 @@ unset($_SESSION["signupErr"]);
                 </tr>
 
                 <tr>
+                    <td colspan="2">Appointment Schedule (Optional)</td>
+                </tr>
+
+                <tr>
+                    <td>Available Days</td>
+                    <td>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="avDays[]" value="Sat">Saturday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Sun">Sunday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Mon">Monday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Tue">Tuesday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Wed">Wednesday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Thu">Thursday</label>
+                            <label><input type="checkbox" name="avDays[]" value="Fri">Friday</label>
+                            
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Start Time</td>
+                    <td><input type="text" name="strTime"></td>
+                </tr>
+                <tr>
+                    <td>End Time</td>
+                    <td><input type="text" name="endTime"></td>
+                </tr>
+
+
+
+
+                <tr>
                     <td><div class="error"><?php echo $signupErr; ?></div></td>
                 </tr>
 

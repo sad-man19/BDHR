@@ -19,6 +19,9 @@ $previousValues =$_SESSION["previousValues"] ?? [];
 $phone =$previousValues["phone"] ?? $doctor["phone"] ?? "";
 $chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
 
+$available_days = $previousValues["available_days"] ?? $doctor["available_days"] ?? "";
+$start_time = $previousValues["start_time"] ?? $doctor["start_time"] ?? "";
+$end_time = $previousValues["end_time"] ?? $doctor["end_time"] ?? "";
 ?>
 
 
@@ -77,6 +80,21 @@ $chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
                         <td><div class="error" id="chamberErr"><?php echo $errors["chamber"] ?? ""; ?></div></td>
                     </tr>
 
+                    <tr colspan="2">Edit Appointment Schedule</tr>
+                    <tr>
+                        <td>Available Days: </td>
+                        <td><input type="text" name="avDays" value="<?php echo htmlspecialchars($available_days); ?>" autocomplete="off"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Start Time </td>
+                        <td><input type="text" name="strTime" value="<?php echo htmlspecialchars($start_time);?>"></td>
+                    </tr>
+                    <tr>
+                        <td>End Time: </td>
+                        <td><input type="text" name="endTime" value="<?php echo htmlspecialchars($end_time);?>"></td>
+                    </tr>
+
                     <tr>
                         <td colspan="2"><h3>Change Password</h3></td>
 
@@ -84,7 +102,7 @@ $chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
 
                     <tr>
                         <td>Current Password:</td>
-                        <td><input type="password" id= "current_password" name="current_password" /></td>
+                        <td><input type="password" id= "current_password" name="current_password" autocomplete="off"/></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -92,7 +110,7 @@ $chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
                     </tr>
                     <tr>
                         <td>New Password:</td>
-                        <td><input type="password" id="new_password" name="new_password"/></td>
+                        <td><input type="password" id="new_password" name="new_password" autocomplete="off"/></td>
                     </tr>
                     <tr>
                     <td></td>
@@ -101,7 +119,7 @@ $chamber =$previousValues["chamber"] ?? $doctor["chamber"] ??"";
 
                     <tr>
                         <td>Confirm New Password:</td>
-                        <td><input type="password" id="confirm_password" name="confirm_password"/></td>
+                        <td><input type="password" id="confirm_password" name="confirm_password" autocomplete="off"/></td>
                     </tr>
                     <tr>
                         <td></td>

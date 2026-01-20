@@ -51,14 +51,19 @@ class DatabaseConnection{
         return $result;
     }
 
-    function insertDoctor($connection, $user_id, $specialization, $license_no, $chamber){
-        $sql = "INSERT INTO doctors (user_id, specialization, license_no, chamber) VALUES('".$user_id."', '".$specialization."', '".$license_no."', '".$chamber."')";
-        $result = $connection->query($sql);
-        if(!$result){
-            die("Failed to insert doctor ". $connection->error);
-        }
-        return $result;
+    function insertDoctor($connection, $user_id, $specialization, $license_no, $chamber, $available_days = NULL, $start_time = NULL, $end_time = NULL){
+    $sql = "INSERT INTO doctors (user_id, specialization, license_no, chamber, available_days, start_time, end_time) 
+            VALUES ('$user_id', '$specialization', '$license_no', '$chamber', " .
+            ($available_days !== NULL ? "'$available_days'" : "NULL") . ", " .
+            ($start_time !== NULL ? "'$start_time'" : "NULL") . ", " .
+            ($end_time !== NULL ? "'$end_time'" : "NULL") . ")";
+    
+    $result = $connection->query($sql);
+    if(!$result){
+        die("Failed to insert doctor ". $connection->error);
     }
+    return $result;
+}
 
     //login
     function loginUser($connection, $email_phone, $password){

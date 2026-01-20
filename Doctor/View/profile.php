@@ -67,6 +67,19 @@ if(isset($_SESSION["successMsg"])){
                 <td class="value"><?php echo htmlspecialchars($doctor["phone"] ?? "Not found")?></td>
                 </tr>
                 
+                <tr>
+                <td class="label">Available Days:</td>
+                <td class="value"><?php echo htmlspecialchars($doctor["available_days"] ?? "Not found")?></td>
+                </tr>
+                <tr>
+                <td class="label">Start Time:</td>
+                <td class="value"><?php echo htmlspecialchars($doctor["start_time"] ?? "Not found")?></td>
+                </tr>
+                <tr>
+                <td class="label">End Time:</td>
+                <td class="value"><?php echo htmlspecialchars($doctor["end_time"] ?? "Not found")?></td>
+                </tr>
+                
                 
             </table>
             <div class="btns">

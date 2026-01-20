@@ -20,7 +20,9 @@ $chamber = $_POST["chamber"]?? "";
 $current_password = $_POST["current_password"] ?? "";
 $new_password = $_POST["new_password"] ?? "";
 $confirm_password = $_POST["confirm_password"] ??"";
-
+$available_days = $_POST["avDays"] ?? NULL; 
+$start_time = $_POST["strTime"] ?? NULL;
+$end_time = $_POST["endTime"] ?? NULL;
 
 $errors = [];
 $previousValues = [];
@@ -62,7 +64,7 @@ if(!empty($current_password)||!empty($new_password)|| !empty($confirm_password))
 
     if(empty($confirm_password)){
         $errors["confirm_password"]="password must be confirmed";
-    }elseif(strlen($new_password)<6){
+    }elseif($new_password !== $confirm_password){
         $errors["confirm_password"]="Passwords do not match";
     }
 }
@@ -99,7 +101,7 @@ if(count($errors)>0){
 
 }
 //query for updating
-//$phoneUpdated = $db->updateUserPhone($connection, $user_id, $phone);
+$phoneUpdated = $db->updateUserPhone($connection, $user_id, $phone);
 if (empty($errors)) {
 
     $result = $db->updateUserPhone($connection, $user_id, $phone);
@@ -109,17 +111,18 @@ if (empty($errors)) {
     }
 }
 
-$addressUpdated = $db->updateDoctorChamber($connection, $user_id, $chamber);
+$chamberUpdated = $db->updateDoctorChamber($connection, $user_id, $chamber);
+$scheduleUpdated = $db->updateDoctorSchedule($connection, $user_id, $available_days, $start_time, $end_time);
 
 if($passChange){
     $passwordUpdated = $db->updatePassword($connection, $user_id, $new_password);
 
 }
 
-if($phoneUpdated || $addressUpdated){
+if($phoneUpdated || $chamberUpdated ||$scheduleUpdated){
     $_SESSION["phone"]=$phone;
 
-    $patientData = $db->getDoctorDetails($connection, $user_id);
+    $doctorData = $db->getDoctorDetails($connection, $user_id);
     $_SESSION["profile_data"]= $doctorData;
 
     $_SESSION["successMsg"]="profile updated successfully";

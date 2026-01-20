@@ -17,6 +17,19 @@ include $path;
 $specialization = $_POST["specialization"] ?? "";
 $license_no = $_POST["license_no"] ?? "";
 $chamber = $_POST["chamber"] ?? "";
+//$available_days = null;
+$start_time = null;
+$end_time = null;
+
+$available_days = isset($_POST["avDays"]) && !empty($_POST["avDays"]) ? implode(',', $_POST["avDays"]) : NULL;
+
+if(!empty($_POST["strTime"])){
+    $start_time=$_POST["strTime"];
+}
+
+if(!empty($_POST["endTime"])){
+    $end_time=$_POST["endTime"];
+}
 
 $errors = [];
 $previousValues = [];
@@ -40,6 +53,8 @@ if(empty($chamber)){
     $previousValues["chamber"] = $chamber;
 }
 
+
+
 // If errors, redirect back
 if(count($errors) > 0){
     $_SESSION["errors"] = $errors;
@@ -62,7 +77,7 @@ if($db->checkLicenseNo($connection, $license_no)){
 
 // Insert doctor details
 $user_id = $_SESSION["signup_user_id"];
-$result = $db->insertDoctor($connection, $user_id, $specialization, $license_no, $chamber);
+$result = $db->insertDoctor($connection, $user_id, $specialization, $license_no, $chamber, $available_days, $start_time, $end_time);
 
 if($result){
     // Clear session variables

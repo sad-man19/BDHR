@@ -80,6 +80,36 @@ class DatabaseConnection{
     return $result;
 }
 
+    function updateDoctorSchedule($connection, $user_id, $available_days = NULL, $start_time = NULL, $end_time = NULL){
+    // Handle NULL values properly
+    $available_days_sql = ($available_days !== NULL && trim($available_days) !== '') ? "'".$available_days."'" : "NULL";
+    $start_time_sql = ($start_time !== NULL && trim($start_time) !== '') ? "'".$start_time."'" : "NULL";
+    $end_time_sql = ($end_time !== NULL && trim($end_time) !== '') ? "'".$end_time."'" : "NULL";
+
+    $sql = "UPDATE doctors SET 
+            available_days = $available_days_sql,
+            start_time = $start_time_sql,
+            end_time = $end_time_sql
+            WHERE user_id = '".$user_id."'";
+
+    $result = $connection->query($sql);
+    if(!$result){
+        die("Failed to update appointment schedule: " . $connection->error);
+    }
+    return $result;
+}
+
+
+/*// Method to update password
+function updatePassword($connection, $user_id, $new_password){
+    $sql = "UPDATE users SET password='".$new_password."' WHERE id='".$user_id."'";
+    $result = $connection->query($sql);
+    if(!$result){
+        die("Failed to update password ". $connection->error);
+    }
+    return $result;
+}*/
+
     function closeConnection($connection){
     $connection->close();
 }
